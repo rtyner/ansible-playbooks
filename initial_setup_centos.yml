@@ -9,6 +9,7 @@
     - name: Install Packages
       yum: name={{ item }} state=latest
       with_items:
+         - epel-release
          - python
          - python-devel
          - python-pip
