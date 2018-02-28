@@ -1,0 +1,21 @@
+--- # this is a structural yaml example to install httpd on centos
+- hosts: centos
+  remote_user: rusty 
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  vars:
+    username: user1
+  tasks:
+  - name: install httpd on centos
+    yum: 
+      name: httpd
+      state: latest
+    notify:
+    - startservice
+  handlers:
+  - name: startservice
+    service:
+      name: httpd
+      state: restarted

@@ -1,0 +1,12 @@
+- hosts: prometheus
+  become: true
+  tasks:
+    - name: Install Packages
+      apt: name={{ item }} state=latest
+      with_items:
+         - vim
+         - git
+         - curl
+         - htop
+         - python-devel
+         - python-pip

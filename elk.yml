@@ -1,0 +1,18 @@
+--- # initial setup for non role specific centos servers
+- hosts: elk 
+  remote_user: rusty
+  become: true
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Install Packages
+      yum: name={{ item }} state=latest
+      with_items:
+         - python
+         - python-devel
+         - python-pip
+         - vim
+         - git
+         - curl
+         - wget
