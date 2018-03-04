@@ -1,0 +1,35 @@
+--- # this is a structural yaml example to install httpd on centos
+- hosts: ubuntu 
+  remote_user: rusty 
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - shell: echo "deb https://packages.elastic.co/beats/apt stable main" |  sudo tee -a /etc/apt/sources.list.d/beats.list 
+  - shell: wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+  - shell: sudo mkdir /etc/pki/tls/certs 
+  - copy:
+      src: /home/rusty/playbooks/elk/ref_files/logstash-forwarder.crt
+      dest: /etc/pki/tls/certs
+      owner: root
+      group: root
+      mode: 0755
+  - copy:
+      src: /home/rusty/playbooks/elk/ref_files/filebeat.yml
+      dest: /etc/filebeat/filebeat.yml
+      owner: root
+      group: root
+      mode: 0755
+  - name: install filebeat
+    apt: 
+      name: filebeat
+      state: latest
+    notify:
+    - startservice
+  handlers:
+  - name: startservice
+    service:
+      name: filebeat
+      state: restarted
+  - shell: sudo update-rc.d filebeat defaults 95 10

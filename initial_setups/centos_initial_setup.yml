@@ -1,0 +1,28 @@
+--- # initial setup for non role specific centos servers
+- hosts: graylog 
+  remote_user: rusty
+  become: true
+  become_method: sudo
+  connection: ssh
+  gather_facts: no 
+  tasks:
+  - name: 
+    shell: sudo yum -y install epel-release
+  - name: Install Packages
+    yum: name={{ item }} state=latest
+    with_items:
+      - nrpe 
+      - nagios-plugins-all
+      - python
+      - python-devel
+      - vim
+      - git
+      - curl
+  - copy:
+      src: /home/rusty/playbooks/nagios/ref_files/nrpe.cfg
+      dest: /etc/nagios/nrpe.cfg 
+      owner: root
+      group: root
+      mode: 0777
+  - shell: sudo systemctl start nrpe.service
+  - shell: sudo systemctl enable nrpe.service
