@@ -1,0 +1,49 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+
+[local]
+localhost
+
+[servers]
+spacewalk ansible_ssh_host=spacewalk.rtynerlabs.xyz
+nagios ansible_ssh_host=nagios.rtynerlabs.xyz
+bind1 ansible_ssh_host=bind1.rtynerlabs.xyz
+bind2 ansible_ssh_host=bind2.rtynerlabs.xyz
+wiki ansible_ssh_host=wiki.rtynerlabs.xyz
+grafana ansible_ssh_host=grafana.rtynerlabs.xyz
+#grafana2 ansible_ssh_host=grafana2.rtynerlabs.xyz
+openvpn ansible_ssh_host=openvpn.rtynerlabs.xyz
+prometheus ansible_ssh_host=prometheus.rtynerlabs.xyz
+chef-svr-1 ansible_ssh_host=chef-svr-1.rtynerlabs.xyz
+docker1 ansible_ssh_host=docker1.rtynerlabs.xyz
+#docker2 ansible_ssh_host=docker2.rtynerlabs.xyz
+#docker3 ansible_ssh_host=docker3.rtynerlabs.xyz
+graylog ansible_ssh_host=graylog.rtynerlabs.xyz
+
+[docker]
+docker1 ansible_ssh_host=docker1.rtynerlabs.xyz
+#docker2 ansible_ssh_host=docker2.rtynerlabs.xyz
+#docker3 ansible_ssh_host=docker3.rtynerlabs.xyz
+
+[centos]
+spacewalk ansible_ssh_host=spacewalk.rtynerlabs.xyz
+nagios ansible_ssh_host=nagios.rtynerlabs.xyz
+bind1 ansible_ssh_host=bind1.rtynerlabs.xyz
+bind2 ansible_ssh_host=bind2.rtynerlabs.xyz
+docker1 ansible_ssh_host=docker1.rtynerlabs.xyz
+#docker2 ansible_ssh_host=docker2.rtynerlabs.xyz
+#docker3 ansible_ssh_host=docker3.rtynerlabs.xyz
+prometheus ansible_ssh_host=prometheus.rtynerlabs.xyz
+graylog ansible_ssh_host=graylog.rtynerlabs.xyz
+
+[dns_servers]
+bind1 ansible_ssh_host=bind1.rtynerlabs.xyz
+bind2 ansible_ssh_host=bind2.rtynerlabs.xyz
+
+[ubuntu]
+wiki ansible_ssh_host=wiki.rtynerlabs.xyz
+grafana ansible_ssh_host=grafana.rtynerlabs.xyz
+#grafana2 ansible_ssh_host=grafana2.rtynerlabs.xyz
+openvpn ansible_ssh_host=openvpn.rtynerlabs.xyz
+chef-svr-1 ansible_ssh_host=chef-svr-1.rtynerlabs.xyz
