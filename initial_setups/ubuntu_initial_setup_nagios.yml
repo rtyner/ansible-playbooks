@@ -19,8 +19,8 @@
     - copy:
         src: /home/rusty/playbooks/nagios/ref_files/nrpe.cfg
         dest: /etc/nagios/nrpe.cfg
-        owner: root
-        group: root
-        mode: 777
+        owner: nagios
+        group: nagios
+        mode: 600
     - shell: sudo systemctl start nrpe | sudo systemctl enable nrpe
     - shell: sudo ufw allow 5666/tcp     
